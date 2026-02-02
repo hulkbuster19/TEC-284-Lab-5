@@ -19,23 +19,18 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  forward();
-  delay(500);
-  turnLeft();
-  delay(500):
-  turnRight();
-  delay(500);
-  backward();
-  delay(500);
+  distanceTest();
+  autoDrive();
 }
 
 void forward(){
-  rightMotor->setSpeed(100);
-  leftMotor->setSpeed(100);
+    rightMotor->setSpeed(500);
+    leftMotor->setSpeed(500);
 
   rightMotor->run(FORWARD);
   leftMotor->run(FORWARD);
 }
+
 
 void backward(){
   rightMotor->setSpeed(100);
@@ -74,4 +69,17 @@ long distanceTest(){
   return distance;
 }
 
-void 
+void autoDrive(distance){
+  if (distance<5){
+    backward();
+    delay(500);
+    turnLeft();
+    delay(500);
+  }
+  else{
+    forward();
+    delay(500);
+    turnRight();
+    delay(500);
+  }
+}
